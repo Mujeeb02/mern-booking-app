@@ -6,7 +6,9 @@ import User from '../models/user';
 const register = async (req: Request, res: Response) => {
     try {
         // Validate request body
+        
         const { firstName, lastName, email, password } = req.body;
+        
         if (!firstName || !lastName || !email || !password || password.length<6) {
             return res.status(400).json({ message: "All fields are required" });
         }
@@ -16,7 +18,7 @@ const register = async (req: Request, res: Response) => {
         if (existingUser) {
             return res.status(409).json({ message: "User already exists" });
         }
-
+        console.log("hey")
         // Encrypt password
         const hashedPassword = await bcrypt.hash(password, 10); // 10 is the number of salt rounds
 

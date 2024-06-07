@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";import Layout from "./Layouts/layout";
 import { Routes } from "react-router";
 import RegisterPage from "./Page/registerNow";
+import SignIn from "./Page/signIn";
 const App = () => {
   return (
     <Router>
@@ -11,6 +12,8 @@ const App = () => {
         <Route path="/" element={<Layout><p>Home Page</p></Layout>} />
         <Route path="/search" element={<Layout><p>Search Page</p></Layout>} />
         <Route path="/register" element={<Layout><RegisterPage/></Layout>} />
+        <Route path="/sign-in" element={<Layout><SignIn/></Layout>} />
+
         {/* <Route path="*" element={<Navigate to="/"/>}></Route> */}
       </Routes>
     </Router>
