@@ -5,12 +5,19 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
+import myhotelRoutes from "./routes/my-hotels"
 import cookieParser from "cookie-parser";
 import path from 'path';
-
+import { v2 as cloudinary } from "cloudinary";
 // Load environment variables from the .env file or .env.e2e file
 dotenv.config({ path: process.env.DOTENV_CONFIG_PATH || '.env' });
 
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+  
 const MONGODB_CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
 
 if (!MONGODB_CONNECTION_STRING) {
@@ -44,6 +51,7 @@ app.use(express.static( path.join(__dirname,"../../frontend/dist")));
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/my-hotels",myhotelRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
