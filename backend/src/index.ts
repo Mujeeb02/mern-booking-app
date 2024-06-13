@@ -3,9 +3,10 @@ import { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import userRoutes from "../src/routes/users";
-import authRoutes from "../src/routes/auth";
+import userRoutes from "./routes/users";
+import authRoutes from "./routes/auth";
 import cookieParser from "cookie-parser";
+import path from 'path';
 
 // Load environment variables from the .env file or .env.e2e file
 dotenv.config({ path: process.env.DOTENV_CONFIG_PATH || '.env' });
@@ -38,6 +39,8 @@ app.use(cors({
 app.get("/api/test", (req: Request, res: Response) => {
     res.json({ message: "server started" });
 });
+
+app.use(express.static( path.join(__dirname,"../../frontend/dist")));
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);

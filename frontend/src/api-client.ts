@@ -1,10 +1,10 @@
 import { RegisterFormData } from "./Page/registerNow";
 import { SignInFormData } from "./Page/signIn";
 
-
+const API_BASE_URL=import.meta.env.VITE_API_BASE_URL || "";
   
   export const register = async (formData: RegisterFormData) => {
-    const response = await fetch(`http://localhost:5000/api/users/register`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/register`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -21,7 +21,7 @@ import { SignInFormData } from "./Page/signIn";
   };
   
   export const signIn = async (formData: SignInFormData) => {
-    const response = await fetch(`http://localhost:5000/api/auth/login`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -38,7 +38,7 @@ import { SignInFormData } from "./Page/signIn";
   };
   
   export const validateToken = async () => {
-    const response = await fetch(`http://localhost:5000/api/auth/validate-token`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
       credentials: "include",
     });
   
@@ -50,7 +50,7 @@ import { SignInFormData } from "./Page/signIn";
   };
   
   export const signOut = async () => {
-    const response = await fetch(`http://localhost:5000/api/auth/logout`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
       credentials: "include",
       method: "POST",
     });
