@@ -9,13 +9,16 @@ import myhotelRoutes from "./routes/my-hotels"
 import cookieParser from "cookie-parser";
 import path from 'path';
 import { v2 as cloudinary } from "cloudinary";
+import { get } from 'http';
 // Load environment variables from the .env file or .env.e2e file
 dotenv.config({ path: process.env.DOTENV_CONFIG_PATH || '.env' });
+
+console.log(process.env.CLOUDINARY_SECRET_KEY)
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+    api_secret: process.env.CLOUDINARY_SECRET_KEY,
   });
   
 const MONGODB_CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
@@ -52,6 +55,10 @@ app.use(express.static( path.join(__dirname,"../../frontend/dist")));
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/my-hotels",myhotelRoutes);
+
+app.get("*",(req:Request,res:Response)=>{
+    res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"))
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

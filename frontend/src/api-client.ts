@@ -59,3 +59,15 @@ const API_BASE_URL=import.meta.env.VITE_API_BASE_URL || "";
       throw new Error("Error during sign out");
     }
   };
+
+  export const addMyHotel=async(hotelFormData:FormData)=>{
+    const response =await fetch(`${API_BASE_URL}/api/my-hotels`,{
+      method:"POST",
+      credentials:"include",
+      body:hotelFormData
+    })
+    if(!response.ok){
+      throw new Error("failed to add hotel")
+    }
+    return response.json();
+  }

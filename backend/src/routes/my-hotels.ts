@@ -34,6 +34,7 @@ router.post("/", [body("name").notEmpty().withMessage('Name is required...'),
         .withMessage("Facilities are required"),
 ], verifyToken, upload.array("imageFiles", 6), async (req: Request, res: Response) => {
     try {
+        
         // Access uploaded files from request object
         const imageFiles = req.files as Express.Multer.File[];
 
@@ -42,6 +43,7 @@ router.post("/", [body("name").notEmpty().withMessage('Name is required...'),
         //if upload was succesfull , add the urls  to the new hotel
         // save the new hotel in our database 
         // return the status of 201
+        console.log("Came in")
         
         const uploadPromises = imageFiles.map(async (image) => {
             const b64 = Buffer.from(image.buffer).toString("base64");
