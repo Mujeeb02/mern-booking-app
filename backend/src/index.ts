@@ -49,7 +49,7 @@ app.use(cors({
 app.get("/api/test", (req: Request, res: Response) => {
     res.json({ message: "server started" });
 });
-
+//
 app.use(express.static( path.join(__dirname,"../../frontend/dist")));
 
 app.use("/api/users", userRoutes);
