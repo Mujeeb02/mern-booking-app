@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import SearchResultCard from "../Components/searchResultCard";
 import Pagination from "../Components/pagination";
 import StarRatingFilter from "../Components/starRatingFilters";
-import { HotelTypesFilter } from "../Components/hotelTypesFilter";
+import  HotelTypesFilter  from "../Components/hotelTypesFilter";
 import FacilitiesFilter from "../Components/facilitiesFilter";
 import PriceFilter from "../Components/priceFilter";
 
